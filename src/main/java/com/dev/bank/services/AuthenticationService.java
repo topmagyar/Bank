@@ -41,9 +41,20 @@ public class AuthenticationService {
             return response;
         }
 
-        AuthLoginResponse response = new AuthLoginResponse();
+        User user = userDao.getUserByEmail(email);
 
+        if (user == null || !passwordEncoder.matches(password, user.getPassword())) {
+            AuthLoginResponse response = new AuthLoginResponse();
+
+            response.setSuccess(false);
+            response.setMessage("Wrong credentials");
+
+            return response;
+        }
+
+        AuthLoginResponse response = new AuthLoginResponse();
         response.setSuccess(true);
+        response.setUserId(user.getId());
 
         return response;
     }

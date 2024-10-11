@@ -40,3 +40,19 @@ public class AppStart {
 
 //login - endpoint, model
 //registration - endpoint, model
+
+
+//------SECURITY
+
+//TOKEN - generation during authentication process (login or register)
+//Custom annotation - create custom annotation to detect security endpoints(required TOKEN)
+//Filter - create filter to check TOKEN
+
+
+//--------------Security Architecture
+
+//--------------CLIENT(Mobile/WebSite/Postman)-------------------
+//---------------*Send Request*----------------------------------
+//---------------Run Filters in Spring Framework-----------------
+//---------------Run Custom Security Filter----------------------(Accept/Reject request)
+//---------------Controllers layer-------------------------------

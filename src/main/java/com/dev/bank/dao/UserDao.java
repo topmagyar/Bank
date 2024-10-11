@@ -5,4 +5,6 @@ import com.dev.bank.models.dao.User;
 public interface UserDao {
 
     Integer saveUser(User user);
+
+    User getUserByEmail(String email);
 }
