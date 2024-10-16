@@ -3,6 +3,7 @@ package com.dev.bank.services;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTCreator;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.auth0.jwt.interfaces.JWTVerifier;
 import com.mysql.cj.util.StringUtils;
@@ -37,7 +38,15 @@ public class TokenService {
             return false;
         }
 
-        DecodedJWT decodedJWT = tokenVerifier.verify(token);
+        DecodedJWT decodedJWT = null;
+        try {
+            decodedJWT = tokenVerifier.verify(token);
+        } catch (JWTVerificationException e) {
+            System.out.println("TOKEN VERIFICATION EXCEPTION: " + e.getMessage());
+
+            return false;
+        }
+
 
         if (decodedJWT == null) {
             return false;
