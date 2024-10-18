@@ -1,5 +1,7 @@
 package com.dev.bank.models.dto;
 
+import java.util.List;
+
 public class UserDto {
 
     private Integer userId;
@@ -8,6 +10,7 @@ public class UserDto {
     private String email;
     private Integer age;
     private String phoneNumber;
+    private List<AccountDto> accounts;
 
     public void setUserId(Integer userId) {
         this.userId = userId;
@@ -55,5 +58,13 @@ public class UserDto {
 
     public String getFirstName() {
         return firstName;
+    }
+
+    public void setAccounts(List<AccountDto> accounts) {
+        this.accounts = accounts;
+    }
+
+    public List<AccountDto> getAccounts() {
+        return accounts;
     }
 }

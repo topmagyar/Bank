@@ -1,7 +1,9 @@
 package com.dev.bank.services;
 
 import com.dev.bank.dao.UserDao;
+import com.dev.bank.models.dao.Account;
 import com.dev.bank.models.dao.User;
+import com.dev.bank.models.dto.AccountDto;
 import com.dev.bank.models.dto.UserDto;
 import com.dev.bank.models.response.AllUsersResponse;
 import com.dev.bank.models.response.UserResponse;
@@ -70,6 +72,20 @@ public class UserService {
         dto.setFirstName(user.getFirstName());
         dto.setLastName(user.getLastName());
         dto.setPhoneNumber(user.getPhoneNumber());
+
+        List<Account> accounts = user.getAccounts();
+        List<AccountDto> accountDtoList = new ArrayList<>();
+        for (Account account : accounts) {
+            AccountDto accountDto = new AccountDto();
+            accountDto.setId(account.getId());
+            accountDto.setNumber(account.getNumber());
+            accountDto.setBalance(account.getBalance());
+            accountDto.setType(account.getType());
+
+            accountDtoList.add(accountDto);
+        }
+
+        dto.setAccounts(accountDtoList);
 
         UserResponse response = new UserResponse();
 
